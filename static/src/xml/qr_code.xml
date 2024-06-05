@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+   <t t-name="qr_code_icon" owl="1">
+   <Dropdown position="'top-end'" togglerClass="'btn d-flex align-items-center'">
+       <t t-set-slot="toggler">
+          <div class="new_icon">
+               <div class="icon_div">
+                   <div class="toggle-icon" role="button">
+                       <i id='create_qr'
+                          class="fa fa-qrcode"
+                          style="color: white;padding:13px;"
+                          role="img" aria-label="QR"/>
+                   </div>
+               </div>
+           </div>
+       </t>
+       <t>
+           <div >
+               <input type="text" id="qr_code_input" t-ref="qr_input" placeholder="Enter your text">
+               </input>
+               <div class="mt16">
+                   <span class="btn-primary cursor-pointer"
+                         style="border-radius: 3px;box-sizing: border-box;margin-left: 20px;font-weight: 500;
+                         line-height: 1.5;"
+                         t-on-click="_qrCodeGenerate">
+                           Generate
+                   </span>
+                       <span class="btn-secondary cursor-pointer"
+                             style="border-radius: 2px;box-sizing: border-box;margin-left: 27px;font-weight: 500;
+                             line-height: 1.5;"
+                             t-on-click="_qrCodeReset">
+                           Reset
+                   </span>
+               </div>
+                   <div class="mt16">
+                   <div id="qr_code_image" t-if="state.QrData['qr']" t-ref="qr_image">
+                       <img style="padding-left: 30px;" t-attf-src="data:image/png;base64,
+                        {{state.QrData['qr']}}" alt="QR Code"/>
+                       <a t-attf-download="data:image/png;base64, {{state.QrData['qr']}}"
+                          t-attf-href="data:image/png;base64, {{state.QrData['qr']}}">
+                           <div class="button icon download btn btn-sml btn-secondary">
+                               <i class="fa fa-download" role="img" aria-label="Download" title="Download">
+                               </i>
+                           </div>
+                       </a>
+                   </div>
+               </div>
+           </div>
+       </t>
+   </Dropdown>
+   </t>
+</templates>
